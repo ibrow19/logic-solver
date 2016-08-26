@@ -69,7 +69,7 @@ public:
 
     // Gets val, pointer to const return so cannot be deleted, tree should only
     //  be deletable from root.
-    FormulaProduction const* getFormula() const;
+    const FormulaProduction* getFormula() const;
 
 private:
 
@@ -107,7 +107,7 @@ public:
     void accept(FormulaVisitor& v) const;
 
     // Gets val
-    Formula const* getNegated() const; 
+    const Formula* getNegated() const; 
 
 private:
     
@@ -128,8 +128,8 @@ public:
     void accept(FormulaVisitor& v) const;
 
     // Getters for formula making up compound
-    Formula const* getFirst() const; 
-    Formula const* getSecond() const; 
+    const Formula* getFirst() const; 
+    const Formula* getSecond() const; 
 
 private:
 

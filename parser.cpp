@@ -82,7 +82,7 @@ bool Formula::eval(const std::map<char, bool>& varVals) const {
 }
 
 
-FormulaProduction const* Formula::getFormula() const {
+const FormulaProduction* Formula::getFormula() const {
 
     return val;
 
@@ -204,7 +204,7 @@ void Negated::accept(FormulaVisitor& v) const {
 }
 
 
-Formula const* Negated::getNegated() const {
+const Formula* Negated::getNegated() const {
 
     return val;
 
@@ -315,14 +315,14 @@ void Compound::accept(FormulaVisitor& v) const {
 }
 
 
-Formula const* Compound::getFirst() const {
+const Formula* Compound::getFirst() const {
 
     return firstVal;
 
 }
 
 
-Formula const* Compound::getSecond() const {
+const Formula* Compound::getSecond() const {
 
     return secondVal;
 
