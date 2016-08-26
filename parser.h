@@ -28,10 +28,10 @@ public:
     virtual std::string getStringVal() const = 0;
 
     // Evaluates the formula as true or false.
-    // context is a map of variables to the true/false value they should be
+    // varVals is a map of variables to the true/false value they should be
     //  evaluated as.
     // If not all variables in the formula are in the map then an error will be thrown.
-    virtual bool eval(const std::map<char,bool>& context) const = 0;
+    virtual bool eval(const std::map<char,bool>& varVals) const = 0;
 
     // Accepts a visitor class to traverse the parse tree and carry out an operation
     virtual void accept(FormulaVisitor& v) = 0;
@@ -64,7 +64,7 @@ public:
     Formula(std::istream& in);
     ~Formula();
     std::string getStringVal() const;
-    bool eval (const std::map<char,bool>& context) const;
+    bool eval (const std::map<char,bool>& varVals) const;
     void accept(FormulaVisitor& v);
 
 private:
@@ -81,7 +81,7 @@ class Atomic : public FormulaProduction {
 public:
     Atomic(std::istream& in);
     std::string getStringVal() const;
-    bool eval (const std::map<char,bool>& context) const;
+    bool eval (const std::map<char,bool>& varVals) const;
     void accept(FormulaVisitor& v);
 
 private:
@@ -99,7 +99,7 @@ public:
     Negated(std::istream& in);
     ~Negated();
     std::string getStringVal() const;
-    bool eval (const std::map<char,bool>& context) const;
+    bool eval (const std::map<char,bool>& varVals) const;
     void accept(FormulaVisitor& v);
 
 private:
@@ -117,7 +117,7 @@ public:
     Compound(std::istream& in);
     ~Compound();
     std::string getStringVal() const;
-    bool eval (const std::map<char,bool>& context) const;
+    bool eval (const std::map<char,bool>& varVals) const;
     void accept(FormulaVisitor& v);
 
 private:
