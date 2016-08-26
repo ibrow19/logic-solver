@@ -135,7 +135,7 @@ bool Atomic::eval(const std::map<char, bool>& varVals) const {
 
     } else {
 
-        return varVals[val];
+        return varVals.at(val);
 
     }
 
