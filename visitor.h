@@ -2,6 +2,7 @@
 #define VISITOR_HEADER_SDKJDAHGKFJADGFKJASHGDF
 
 
+class Formula;
 class Atomic;
 class Negated;
 class Compound;
@@ -18,10 +19,10 @@ public:
     virtual ~FormulaVisitor() {};
 
     // Visit function for each type of formula.
-    virtual void visit(Formula* f) = 0;
-    virtual void visit(Atomic* a) = 0;
-    virtual void visit(Negated* n) = 0;
-    virtual void visit(Compound* c) = 0;
+    virtual void visit(const Formula* f) = 0;
+    virtual void visit(const Atomic* a) = 0;
+    virtual void visit(const Negated* n) = 0;
+    virtual void visit(const Compound* c) = 0;
 };
 
 

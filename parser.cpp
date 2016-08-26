@@ -6,6 +6,7 @@
 #include <cmath>
 
 #include "parser.h"
+#include "visitor.h"
 
 
 /* FormulaProduction Class */
@@ -17,13 +18,6 @@ FormulaProduction::~FormulaProduction() {}
 std::set<char> FormulaProduction::getVars() const{
 
     return vars;
-
-}
-
-
-void FormulaProduction::accept(FormulaVisitor& v) {
-
-    v.visit(this);
 
 }
 
@@ -95,6 +89,13 @@ FormulaProduction const* Formula::getFormula() const {
 }
 
 
+void Formula::accept(FormulaVisitor& v) const {
+
+    v.visit(this);
+
+}
+
+
 /* Atomic class */
 
 Atomic::Atomic(std::istream& in) {
@@ -114,7 +115,7 @@ Atomic::Atomic(std::istream& in) {
     // Create set with variable or default uses empty set if 1 or 0.
     if (val != '1' && val != '0') {
 
-        vars = {val};
+        vars.insert(vars.begin(), val);
 
     }
 
@@ -124,6 +125,13 @@ Atomic::Atomic(std::istream& in) {
 std::string Atomic::getStringVal() const {
 
     return std::string(1,val);
+
+}
+
+
+void Atomic::accept(FormulaVisitor& v) const {
+
+    v.visit(this);
 
 }
 
@@ -143,13 +151,6 @@ bool Atomic::eval(const std::map<char, bool>& varVals) const {
         return varVals.at(val);
 
     }
-
-}
-
-
-void Atomic::accept(FormulaVisitor& v) {
-
-    v.visit(this);
 
 }
 
@@ -196,14 +197,14 @@ bool Negated::eval(const std::map<char, bool>& varVals) const {
 }
 
 
-void Negated::accept(FormulaVisitor& v) {
+void Negated::accept(FormulaVisitor& v) const {
 
     v.visit(this);
 
 }
 
 
-Formula const* Negated::getNegated() {
+Formula const* Negated::getNegated() const {
 
     return val;
 
@@ -299,7 +300,7 @@ bool Compound::eval(const std::map<char, bool>& varVals) const {
             break;
 
         default:
-            return (res1 == res2)
+            return (res1 == res2);
 
     }
 
@@ -307,14 +308,21 @@ bool Compound::eval(const std::map<char, bool>& varVals) const {
 }
 
 
-Formula const* getFirst() const {
+void Compound::accept(FormulaVisitor& v) const {
 
-    return FirstVal;
+    v.visit(this);
 
 }
 
 
-Formula const* getSecond() const {
+Formula const* Compound::getFirst() const {
+
+    return firstVal;
+
+}
+
+
+Formula const* Compound::getSecond() const {
 
     return secondVal;
 

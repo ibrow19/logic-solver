@@ -34,7 +34,7 @@ public:
     virtual bool eval(const std::map<char,bool>& varVals) const = 0;
 
     // Accepts a visitor class to traverse the parse tree and carry out an operation
-    void accept(FormulaVisitor& v) const = 0;
+    virtual void accept(FormulaVisitor& v) const = 0;
 
 protected:
 
@@ -65,6 +65,7 @@ public:
     ~Formula();
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& varVals) const;
+    void accept(FormulaVisitor& v) const;
 
     // Gets val, pointer to const return so cannot be deleted, tree should only
     //  be deletable from root.
@@ -85,6 +86,7 @@ public:
     Atomic(std::istream& in);
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& varVals) const;
+    void accept(FormulaVisitor& v) const;
 
 private:
 
@@ -102,6 +104,7 @@ public:
     ~Negated();
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& varVals) const;
+    void accept(FormulaVisitor& v) const;
 
     // Gets val
     Formula const* getNegated() const; 
@@ -122,6 +125,7 @@ public:
     ~Compound();
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& varVals) const;
+    void accept(FormulaVisitor& v) const;
 
     // Getters for formula making up compound
     Formula const* getFirst() const; 
