@@ -102,9 +102,6 @@ public:
     bool eval (const std::map<char,bool>& context) const;
     void accept(FormulaVisitor& v);
 
-    // Gets Negated formula.
-    Formula* getNegated() const;
-
 private:
     
     // Pointer to the formula that is being negated.
