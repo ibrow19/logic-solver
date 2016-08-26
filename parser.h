@@ -64,6 +64,9 @@ public:
     bool eval (const std::map<char,bool>& context) const;
     void accept(FormulaVisitor& v);
 
+    // Getter for pointed to formula.
+    Formula* getFormula() const;
+
 private:
 
     // Points to a formula based on input.
@@ -80,6 +83,9 @@ public:
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& context) const;
     void accept(FormulaVisitor& v);
+
+    // Gets the boolean variable/constant this atomic represents.
+    char getVal() const;
 
 private:
 
@@ -99,6 +105,9 @@ public:
     bool eval (const std::map<char,bool>& context) const;
     void accept(FormulaVisitor& v);
 
+    // Gets Negated formula.
+    Formula* getNegated() const;
+
 private:
     
     // Pointer to the formula that is being negated.
@@ -116,6 +125,11 @@ public:
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& context) const;
     void accept(FormulaVisitor& v);
+
+    // Functions for getting the formulas and operation symbol making up the compound.
+    Formula* getFirst() const;
+    Formula* getSecond() const;
+    char op() const;
 
 private:
 
