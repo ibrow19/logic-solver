@@ -18,6 +18,7 @@ public:
     virtual ~FormulaVisitor() {};
 
     // Visit function for each type of formula.
+    virtual void visit(Formula* f) = 0;
     virtual void visit(Atomic* a) = 0;
     virtual void visit(Negated* n) = 0;
     virtual void visit(Compound* c) = 0;

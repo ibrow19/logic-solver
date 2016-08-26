@@ -21,6 +21,13 @@ std::set<char> FormulaProduction::getVars() const{
 }
 
 
+void FormulaProduction::accept(FormulaVisitor& v) {
+
+    v.visit(this);
+
+}
+
+
 /* ParseError Class */
 
 const char* ParseError::what() const throw(){
@@ -81,11 +88,9 @@ bool Formula::eval(const std::map<char, bool>& varVals) const {
 }
 
 
-// Formula just represents general formula so passes visitor to the actual 
-//  formula it stores.
-void Formula::accept(FormulaVisitor& v) {
+FormulaProduction const* Formula::getFormula() const {
 
-    val->accept(v);
+    return val;
 
 }
 
@@ -195,7 +200,12 @@ void Negated::accept(FormulaVisitor& v) {
 
     v.visit(this);
 
-    val->accept(v);
+}
+
+
+Formula const* Negated::getNegated() {
+
+    return val;
 
 }
 
@@ -297,14 +307,15 @@ bool Compound::eval(const std::map<char, bool>& varVals) const {
 }
 
 
-void Compound::accept(FormulaVisitor& v) {
+Formula const* getFirst() const {
 
-    // Inorder traversal order.
+    return FirstVal;
 
-    firstVal->accept(v);
+}
 
-    v.visit(this);
 
-    secondVal->accept(v);
+Formula const* getSecond() const {
+
+    return secondVal;
 
 }
