@@ -48,7 +48,10 @@ protected:
  */
 class ParseError : public std::exception {
 private:
+
+    // Gives meaningful error message.
     const char* what() const throw();
+
 };
 
 
@@ -63,9 +66,6 @@ public:
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& context) const;
     void accept(FormulaVisitor& v);
-
-    // Getter for pointed to formula.
-    Formula* getFormula() const;
 
 private:
 
@@ -83,9 +83,6 @@ public:
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& context) const;
     void accept(FormulaVisitor& v);
-
-    // Gets the boolean variable/constant this atomic represents.
-    char getVal() const;
 
 private:
 
@@ -125,11 +122,6 @@ public:
     std::string getStringVal() const;
     bool eval (const std::map<char,bool>& context) const;
     void accept(FormulaVisitor& v);
-
-    // Functions for getting the formulas and operation symbol making up the compound.
-    Formula* getFirst() const;
-    Formula* getSecond() const;
-    char op() const;
 
 private:
 
