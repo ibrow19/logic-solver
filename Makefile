@@ -3,7 +3,7 @@ OBJS = logicsolver.cpp parser.cpp stringvisitor.cpp
 
 CC = g++
 
-COMPILER_FLAGS = -Wall -Wextra -std=c++11
+COMPILER_FLAGS = -Wall -Wextra
 
 # Libraries being linked
 #LINKER_FLAGS = 
