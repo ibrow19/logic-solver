@@ -24,7 +24,8 @@ public:
     // Getter for variables in formula.
     std::set<char> getVars() const;
 
-    // Returns a string representation of the formula.
+    // Gets string representation of formula: what would be parsed to create
+    //  that formula.
     virtual std::string getStringVal() const = 0;
 
     // Evaluates the formula as true or false.

@@ -13,7 +13,8 @@ void ResultBuildVisitor::visit(const Formula* f) {
 }
 
 
-void ResultBuildVisitor::visit(const Atomic* a) {
+// This visitor does not use parameter so is commented out.
+void ResultBuildVisitor::visit(const Atomic* /* a */) {
 
     // Don't need to display result for Atomics as all variable values shown
     //  at start of row.

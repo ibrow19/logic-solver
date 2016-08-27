@@ -11,7 +11,7 @@ class Compound;
 /*
  * Class defining interface for visitors of formulas
  * The goal of this visitor class is to allow for addition of more complex
- *  opeartions to the tree created by the parser in parser.h/parser.cpp without
+ *  operations to the tree created by the parser in parser.h/parser.cpp without
  *  complicating/changing the base interface
  */
 class FormulaVisitor {
