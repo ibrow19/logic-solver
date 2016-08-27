@@ -2,6 +2,7 @@
 #define STRING_VISITOR_ASDHGASKDGHKJASDGSAKHDGJ
 
 #include <string>
+#include <sstream>
 #include <map>
 
 #include "visitor.h"
@@ -30,11 +31,7 @@ public:
 
 private:
 
-    // bool to char conversion to be used for changing eval from parse tree to 
-    //  1 or 0.
-    char boolToChar(bool b) const;
-
-    std::string result;
+    std::stringstream result;
     std::map<char, bool> context;
     
 };

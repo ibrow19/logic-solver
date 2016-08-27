@@ -6,13 +6,6 @@
 ResultBuildVisitor::ResultBuildVisitor(std::map<char, bool> m) : context(m) {}
 
 
-std::string ResultBuildVisitor::getResult() const {
-
-    return result;
-
-}
-
-
 void ResultBuildVisitor::visit(const Formula* f) {
 
     (f->getFormula())->accept(*this);
@@ -22,14 +15,16 @@ void ResultBuildVisitor::visit(const Formula* f) {
 
 void ResultBuildVisitor::visit(const Atomic* a) {
 
-    result += boolToChar(a->eval(context));
+    // Don't need to display result for Atomics as all variable values shown
+    //  at start of row.
+    result << ' ';
 
 }
 
 
 void ResultBuildVisitor::visit(const Negated* n) {
 
-    result += boolToChar(n->eval(context));
+    result << (n->eval(context));
 
     (n->getNegated())->accept(*this);
 
@@ -39,21 +34,21 @@ void ResultBuildVisitor::visit(const Negated* n) {
 void ResultBuildVisitor::visit(const Compound* c) {
 
     // Space for alignment with brackets;
-    result += ' ';
+    result << ' ';
 
     (c->getFirst())->accept(*this);
 
-    result += boolToChar(c->eval(context));
+    result << (c->eval(context));
 
     (c->getSecond())->accept(*this);
 
-    result += ' ';
+    result << ' ';
 
 }
 
 
-char ResultBuildVisitor::boolToChar(bool b) const {
+std::string ResultBuildVisitor::getResult() const {
 
-    return (b ? '1' : '0');
+    return result.str();
 
 }
