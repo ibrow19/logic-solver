@@ -214,13 +214,27 @@ const Formula* Negated::getNegated() const {
 /* Compound class */
 
 
-// TODO: Check for memory leaks that might occur here
 Compound::Compound(std::istream& in) {
+
+    // initialise values
+    firstVal = NULL;
+    secondVal = NULL;
 
     if (in.peek() == '(') {
 
         in.get();
-        firstVal = new Formula(in);
+
+        try {
+
+            firstVal = new Formula(in);
+
+        // free values on parse error
+        } catch (std::exception& e) {
+
+            delete firstVal;
+            throw ParseError();
+
+        }
 
         char next = in.peek();
         if (next != '|' && next != '&' && next != '#' && next != '>' && next != '=') {
@@ -230,7 +244,19 @@ Compound::Compound(std::istream& in) {
         }
 
         in >> op;
-        secondVal = new Formula(in);
+
+        try {
+
+            secondVal = new Formula(in);
+
+        // free values on parse error
+        } catch (std::exception& e) {
+
+            delete firstVal;
+            delete secondVal;
+            throw ParseError();
+
+        }
 
         if (in.peek() == ')') {
 
@@ -264,6 +290,7 @@ Compound::Compound(std::istream& in) {
 
 Compound::~Compound() {
 
+    std::cout << "!!!" << std::endl;
     delete firstVal;
     delete secondVal;
 
