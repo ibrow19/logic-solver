@@ -16,9 +16,9 @@ are of the form of a single upper or lower case letter (case sensitive so 'A'
 is a different variable to 'a'). A negated formula is any fomrula preceded
 by a '-'. A compound formula must begin with '(' and end with ')' and takes
 the general form "(x&y)" where x and y can be any formula and '&' can be any
-of the following operators:
-    & - and
-    | - or
-    # - xor
-    > - implies
+of the following operators: <br />
+    & - and <br />
+    | - or <br />
+    # - xor <br />
+    > - implies <br />
     = - equals
