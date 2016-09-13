@@ -1,15 +1,14 @@
+# Compiler
+CC = g++
+
+# Flags for error detection
+CFLAGS = -Wall -Wextra
+
 # Files to compile
 OBJS = logicsolver.cpp parser.cpp stringvisitor.cpp
 
-CC = g++
-
-COMPILER_FLAGS = -Wall -Wextra
-
-# Libraries being linked
-#LINKER_FLAGS = 
-
-# executable name
-OBJ_NAME = solver
+# Executable name
+ONAME = solver
 
 all : $(OBJS)
-	$(CC) $(OBJS) $(COMPILER_FLAGS) -o $(OBJ_NAME) 
+	$(CC) $(OBJS) $(CFLAGS) -o $(ONAME) 
