@@ -4,8 +4,8 @@
 #include <cmath>
 #include <set>
 #include <map>
-#include "parser.h"
-#include "stringvisitor.h"
+#include "parser.hpp"
+#include "stringvisitor.hpp"
 
 
 int main(int argc, char* const argv[]) {

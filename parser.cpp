@@ -5,8 +5,8 @@
 #include <iterator>
 #include <cmath>
 
-#include "parser.h"
-#include "visitor.h"
+#include "parser.hpp"
+#include "visitor.hpp"
 
 
 /* FormulaProduction Class */

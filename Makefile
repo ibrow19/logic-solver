@@ -10,5 +10,5 @@ OBJS = logicsolver.cpp parser.cpp stringvisitor.cpp
 # Executable name
 ONAME = solver
 
-all : $(OBJS)
+all : $(OBJS) visitor.hpp parser.hpp stringvisitor.hpp
 	$(CC) $(OBJS) $(CFLAGS) -o $(ONAME) 
